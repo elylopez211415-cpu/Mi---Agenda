@@ -1,12 +1,12 @@
-const CACHE = "mi-agenda-v3";
+const CACHE = "mi-agenda-v6";
 const ARCHIVOS = [
     "./",
     "./index.html",
     "./style.css",
     "./script.js",
     "./manifest.json",
-    "./icon-192.png",
-    "./icon-512.png",
+    "./icono-mascota-192.png",
+    "./icono-mascota-512.png",
 ];
 
 self.addEventListener("install", (e) => {
