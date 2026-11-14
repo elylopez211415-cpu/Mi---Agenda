@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Mi Agenda">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>Mi Agenda</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="app-container">
+    <header>
+        <div>
+            <p id="saludo"></p>
+            <h1><i class="fas fa-book-open"></i> Mi Agenda</h1>
+            <p id="fecha-actual"></p>
+        </div>
+        <button id="tema-btn" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+    </header>
+
+    <main>
+        <!-- TAREAS -->
+        <section id="vista-tareas" class="vista activa">
+            <div class="progreso">
+                <div><strong id="pct">0%</strong> de tus tareas completadas</div>
+                <div class="barra"><span id="barra-fill"></span></div>
+            </div>
+            <div class="input-section">
+                <input type="text" id="tarea-input" placeholder="¿Qué tienes que hacer?..." autocomplete="off">
+                <button id="agregar-btn" title="Agregar tarea" aria-label="Agregar tarea"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="opciones">
+                <select id="cat-sel" aria-label="Categoría">
+                    <option value="personal">Personal</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="estudio">Estudio</option>
+                </select>
+                <select id="prio-sel" aria-label="Prioridad">
+                    <option value="media">Prioridad media</option>
+                    <option value="alta">Prioridad alta</option>
+                    <option value="baja">Prioridad baja</option>
+                </select>
+                <input type="date" id="fecha-input" aria-label="Fecha límite">
+            </div>
+            <div class="filtros">
+                <button class="filtro-btn activo" data-filtro="todas">Todas</button>
+                <button class="filtro-btn" data-filtro="pendientes">Pendientes</button>
+                <button class="filtro-btn" data-filtro="completadas">Completadas</button>
+            </div>
+            <ul id="lista-tareas"></ul>
+            <footer>
+                <span id="contador-tareas">0 tareas pendientes</span>
+                <button id="limpiar-btn">Limpiar completadas</button>
+            </footer>
+        </section>
+
+        <!-- CALENDARIO -->
+        <section id="vista-calendario" class="vista">
+            <div class="cal-head">
+                <button id="mes-ant" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></button>
+                <span id="cal-mes"></span>
+                <button id="mes-sig" aria-label="Mes siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <h3 id="cal-dia"></h3>
+            <ul id="lista-dia"></ul>
+        </section>
+
+        <!-- NOTAS -->
+        <section id="vista-notas" class="vista">
+            <textarea id="nota-input" rows="3" placeholder="Escribe una nota rápida..."></textarea>
+            <button id="nota-btn" class="btn-principal"><i class="fas fa-note-sticky"></i> Guardar nota</button>
+            <ul id="lista-notas"></ul>
+        </section>
+
+        <!-- RESUMEN -->
+        <section id="vista-resumen" class="vista">
+            <div id="resumen"></div>
+        </section>
+    </main>
+
+    <nav class="tabs">
+        <button class="activo" data-vista="tareas"><i class="fas fa-list-check"></i>Tareas</button>
+        <button data-vista="calendario"><i class="fas fa-calendar-days"></i>Calendario</button>
+        <button data-vista="notas"><i class="fas fa-note-sticky"></i>Notas</button>
+        <button data-vista="resumen"><i class="fas fa-chart-pie"></i>Resumen</button>
+    </nav>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

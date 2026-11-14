@@ -1,0 +1,113 @@
+:root{--v:#6366f1;--a:#3b82f6;--ok:#22c55e;--rojo:#ef4444;--amb:#f59e0b;--txt:#1e1b4b;--suave:#6b7280;--borde:#e5e7eb;--fs:#f5f6ff;--card:#fff;--hov:#eceeff;--sombra:0 20px 50px rgba(55,48,163,.25)}
+[data-tema="oscuro"]{--txt:#eceeff;--suave:#9aa0c8;--borde:#2e3158;--fs:#262948;--card:#1b1d38;--hov:#303459;--sombra:0 20px 50px rgba(0,0,0,.5)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:16px;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color:var(--txt);background:linear-gradient(135deg,#8b5cf6 0%,#6366f1 50%,#3b82f6 100%) fixed}
+button{font:inherit;cursor:pointer;border:0}
+ul{list-style:none;margin:0;padding:0}
+h3{margin:6px 0 10px;font-size:1rem;text-transform:capitalize}
+
+.app-container{width:100%;max-width:520px;height:min(780px,calc(100dvh - 32px));display:flex;flex-direction:column;background:var(--card);border-radius:24px;box-shadow:var(--sombra);overflow:hidden}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 8px}
+header h1{margin:0;font-size:1.55rem;letter-spacing:-.5px}
+header h1 i{background:linear-gradient(135deg,var(--v),var(--a));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#saludo{margin:0 0 2px;color:var(--v);font-weight:600;font-size:.9rem}
+#fecha-actual{margin:4px 0 0;color:var(--suave);font-size:.9rem;text-transform:capitalize}
+#tema-btn{width:42px;height:42px;border-radius:50%;background:var(--fs);color:var(--v);font-size:1.05rem;transition:.2s}
+#tema-btn:hover{transform:rotate(20deg);background:var(--hov)}
+
+main{flex:1;min-height:0}
+.vista{display:none;height:100%;flex-direction:column;padding:8px 22px 14px;overflow-y:auto}
+.vista.activa{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Progreso */
+.progreso{background:linear-gradient(135deg,var(--v),var(--a));color:#fff;border-radius:16px;padding:14px 16px;margin-bottom:14px;box-shadow:0 8px 20px rgba(99,102,241,.35)}
+.barra{height:8px;background:rgba(255,255,255,.3);border-radius:8px;margin-top:8px;overflow:hidden}
+#barra-fill{display:block;height:100%;width:0;background:#fff;border-radius:8px;transition:width .5s}
+
+/* Formularios */
+input[type=text],input[type=date],select,textarea{width:100%;min-width:0;padding:12px 14px;font:inherit;font-size:1rem;color:var(--txt);background:var(--fs);border:2px solid transparent;border-radius:14px;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{background:var(--card);border-color:var(--v);box-shadow:0 0 0 4px rgba(99,102,241,.15)}
+textarea{resize:none;margin-bottom:10px}
+.input-section{display:flex;gap:10px;margin-bottom:10px}
+#agregar-btn{flex:none;width:52px;border-radius:14px;font-size:1.1rem;color:#fff;background:linear-gradient(135deg,var(--v),var(--a));box-shadow:0 6px 16px rgba(99,102,241,.4);transition:.2s}
+#agregar-btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
+#agregar-btn:active{transform:scale(.94)}
+.opciones{display:flex;gap:8px;margin-bottom:12px}
+.opciones select,.opciones input{padding:9px 8px;font-size:.82rem;flex:1}
+.btn-principal{padding:12px;border-radius:14px;color:#fff;font-weight:600;background:linear-gradient(135deg,var(--v),var(--a));margin-bottom:14px;transition:.2s}
+.btn-principal:hover{transform:translateY(-2px);filter:brightness(1.07)}
+
+/* Filtros */
+.filtros{display:flex;gap:6px;padding:5px;margin-bottom:12px;background:var(--fs);border-radius:14px}
+.filtro-btn{flex:1;padding:9px 6px;font-size:.88rem;font-weight:600;color:var(--suave);background:transparent;border-radius:10px;transition:.2s}
+.filtro-btn:hover{color:var(--v)}
+.filtro-btn.activo{color:#fff;background:linear-gradient(135deg,var(--v),var(--a));box-shadow:0 4px 12px rgba(99,102,241,.35)}
+
+/* Tareas */
+.tarea{display:flex;align-items:center;gap:12px;padding:12px;margin-bottom:8px;background:var(--fs);border-radius:14px;transition:background .2s,transform .2s,opacity .3s}
+.tarea:hover{background:var(--hov);transform:translateX(2px)}
+.tarea.nueva{animation:entrar .4s cubic-bezier(.22,1,.36,1)}
+@keyframes entrar{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+.tarea.saliendo{opacity:0;transform:translateX(30px)}
+.tarea-check{flex:none;width:26px;height:26px;display:grid;place-items:center;padding:0;font-size:.75rem;color:transparent;background:var(--card);border:2px solid #c7c9f5;border-radius:50%;transition:.25s}
+.tarea-check:hover{border-color:var(--ok);transform:scale(1.1)}
+.tarea-info{flex:1;min-width:0}
+.tarea-texto{display:block;line-height:1.35;word-break:break-word;transition:color .25s}
+.tarea.completada .tarea-check{color:#fff;background:var(--ok);border-color:var(--ok)}
+.tarea.completada .tarea-texto{color:#9ca3af;text-decoration:line-through;text-decoration-color:var(--ok);text-decoration-thickness:2px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--card);color:var(--suave)}
+.chip.alta{color:var(--rojo)}.chip.media{color:var(--amb)}.chip.baja{color:var(--ok)}
+.chip.vencida{background:rgba(239,68,68,.14);color:var(--rojo)}
+.tarea-eliminar,.nota-del{flex:none;padding:6px 8px;color:#a9acc4;background:transparent;border-radius:8px;transition:.2s}
+.tarea-eliminar:hover,.nota-del:hover{color:var(--rojo);background:rgba(239,68,68,.1)}
+.vacio{padding:24px 0;text-align:center;color:var(--suave);font-size:.95rem}
+footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--borde)}
+#contador-tareas{font-size:.9rem;color:var(--suave)}
+#limpiar-btn{padding:8px 14px;font-size:.85rem;font-weight:600;color:var(--rojo);background:rgba(239,68,68,.1);border-radius:10px;transition:.2s}
+#limpiar-btn:hover{color:#fff;background:var(--rojo)}
+
+/* Calendario */
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cal-head button{width:38px;height:38px;border-radius:50%;background:var(--fs);color:var(--v);transition:.2s}
+.cal-head button:hover{background:var(--hov)}
+#cal-mes{font-weight:700;font-size:1.05rem;text-transform:capitalize}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-bottom:14px}
+.sem{font-size:.75rem;font-weight:600;color:var(--suave);padding:4px 0}
+.dia{aspect-ratio:1;position:relative;border-radius:12px;background:transparent;color:var(--txt);font-size:.9rem;transition:.2s}
+.dia:hover{background:var(--fs)}
+.dia.hoy{box-shadow:inset 0 0 0 2px var(--v)}
+.dia.sel{background:linear-gradient(135deg,var(--v),var(--a));color:#fff}
+.dia.punto::after{content:"";position:absolute;bottom:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ok)}
+
+/* Notas */
+.nota{position:relative;padding:14px 44px 14px 14px;margin-bottom:10px;border-radius:14px;white-space:pre-wrap;word-break:break-word;animation:entrar .4s}
+.nota-del{position:absolute;top:8px;right:6px}
+.n0{background:rgba(139,92,246,.16)}.n1{background:rgba(59,130,246,.16)}.n2{background:rgba(34,197,94,.16)}.n3{background:rgba(245,158,11,.18)}
+
+/* Resumen */
+.anillo{width:130px;height:130px;border-radius:50%;margin:4px auto 18px;background:conic-gradient(var(--v) calc(var(--p)*1%),var(--fs) 0);display:grid;place-items:center}
+.anillo span{width:98px;height:98px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:1.5rem;font-weight:700}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.stat{background:var(--fs);border-radius:14px;padding:14px}
+.stat b{display:block;font-size:1.6rem}
+.stat span{color:var(--suave);font-size:.8rem}
+.fila-cat{margin-bottom:12px;font-size:.9rem}
+.fila-cat .bar{height:8px;background:var(--fs);border-radius:8px;margin-top:6px;overflow:hidden}
+.fila-cat .bar i{display:block;height:100%;border-radius:8px}
+
+/* Navegación inferior */
+.tabs{display:flex;gap:4px;padding:8px 8px max(8px,env(safe-area-inset-bottom));border-top:1px solid var(--borde);background:var(--card)}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;font-size:.72rem;font-weight:600;color:var(--suave);background:none;border-radius:12px;transition:.2s}
+.tabs i{font-size:1.15rem}
+.tabs button.activo{color:var(--v);background:var(--fs)}
+
+@media(max-width:480px){
+  body{padding:0}
+  .app-container{max-width:none;height:100dvh;border-radius:0}
+  header{padding-top:max(20px,env(safe-area-inset-top))}
+  input[type=text],textarea{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
