@@ -21,8 +21,12 @@
             <p id="saludo"></p>
             <h1><i class="fas fa-book-open"></i> Mi Agenda</h1>
             <p id="fecha-actual"></p>
+            <p id="frase"></p>
         </div>
-        <button id="tema-btn" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+        <div class="acciones">
+            <button id="color-btn" aria-label="Cambiar color"><i class="fas fa-palette"></i></button>
+            <button id="tema-btn" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+        </div>
     </header>
 
     <main>
@@ -38,14 +42,14 @@
             </div>
             <div class="opciones">
                 <select id="cat-sel" aria-label="Categoría">
-                    <option value="personal">Personal</option>
-                    <option value="trabajo">Trabajo</option>
-                    <option value="estudio">Estudio</option>
+                    <option value="personal">🏠 Personal</option>
+                    <option value="trabajo">💼 Trabajo</option>
+                    <option value="estudio">📚 Estudio</option>
                 </select>
                 <select id="prio-sel" aria-label="Prioridad">
-                    <option value="media">Prioridad media</option>
-                    <option value="alta">Prioridad alta</option>
-                    <option value="baja">Prioridad baja</option>
+                    <option value="media">⚡ Prioridad media</option>
+                    <option value="alta">🔥 Prioridad alta</option>
+                    <option value="baja">🌱 Prioridad baja</option>
                 </select>
                 <input type="date" id="fecha-input" aria-label="Fecha límite">
             </div>
@@ -80,6 +84,21 @@
             <ul id="lista-notas"></ul>
         </section>
 
+        <!-- ENFOQUE -->
+        <section id="vista-enfoque" class="vista">
+            <h3>🍅 Modo enfoque</h3>
+            <div class="pomo-modos">
+                <button class="pomo-modo activo" data-modo="enfoque">📖 Enfoque 25 min</button>
+                <button class="pomo-modo" data-modo="descanso">☕ Descanso 5 min</button>
+            </div>
+            <div class="anillo pomo-anillo" id="pomo-anillo"><span id="pomo-tiempo">25:00</span></div>
+            <div class="pomo-botones">
+                <button id="pomo-ini" class="btn-principal"><i class="fas fa-play"></i> Iniciar</button>
+                <button id="pomo-reset" aria-label="Reiniciar"><i class="fas fa-rotate-left"></i></button>
+            </div>
+            <p class="pomo-info">Sesiones completadas hoy: <b id="pomo-n">0</b> 🍅</p>
+        </section>
+
         <!-- RESUMEN -->
         <section id="vista-resumen" class="vista">
             <div id="resumen"></div>
@@ -90,9 +109,11 @@
         <button class="activo" data-vista="tareas"><i class="fas fa-list-check"></i>Tareas</button>
         <button data-vista="calendario"><i class="fas fa-calendar-days"></i>Calendario</button>
         <button data-vista="notas"><i class="fas fa-note-sticky"></i>Notas</button>
+        <button data-vista="enfoque"><i class="fas fa-stopwatch"></i>Enfoque</button>
         <button data-vista="resumen"><i class="fas fa-chart-pie"></i>Resumen</button>
     </nav>
 </div>
+<canvas id="confeti"></canvas>
 <script src="script.js"></script>
 </body>
 </html>
